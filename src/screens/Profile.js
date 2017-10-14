@@ -26,7 +26,8 @@ export default class Profile extends Component {
             .bind(this);
         this.state = {
             message: '',
-            messages: []
+            messages: [],
+            selectedTab: 'profile'
         }
     }
 
@@ -73,26 +74,23 @@ export default class Profile extends Component {
             })
     }
 
+    changeTab(selectedTab) {
+        this.setState({selectedTab})
+    }
+
     render() {
         return (
             <KeyboardAvoidingView behavior='padding' style={styles.container}>
-                <View style={{width: '100%',height: '9%'}}>
-                    <Header
-                        statusBarProps={{barStyle: 'light-content'}}
-                        leftComponent={<Icon name='menu' color='white' type='material-community'/>}
-                        centerComponent={{text: 'Chat Room',style: {color: '#fff'}}}
-                        rightComponent={<Icon name = 'logout' color = 'white' type = 'material-community' onPress = {this.logout}/>}
-                    />
-                </View>
                 <View style={{flex: 1,padding: 20,opacity: 0.5}}>
                     <FlatList
                         data={this.state.messages}
-                        renderItem={({item}) => (
-                        <View>
-                        <Text style={{color:'white',lineHeight:25}}>{item.text}</Text>
-                        <Timestamp time={item.timestamp} component={Text}/>
-                        </View>
-                    )}
+                        renderItem={({item}) => 
+                        (
+                            <View>
+                            <Text style={{color:'white',lineHeight:25}}>{item.text}</Text>
+                            <Timestamp time={item.timestamp} component={Text}/>
+                            </View>
+                        )}
                         keyExtractor={(item) => item.id}/>
                 </View>
                 <TextInput

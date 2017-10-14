@@ -14,11 +14,12 @@ export default class App extends React.Component {
   }
 
   render() {
-    return (<Navigator
-      initialRoute={{
-      name: 'Login'
-    }}
-      renderScene={this.navigatorRenderScene}/>);
+    return (
+      <Navigator 
+        initialRoute={{name: 'Login'}}
+        renderScene={this.navigatorRenderScene}
+        />
+      );
   }
 
   navigatorRenderScene(route, navigator) {
